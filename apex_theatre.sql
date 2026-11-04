@@ -16,6 +16,7 @@ CREATE TABLE shows (
     genre VARCHAR(50) NOT NULL,
     description TEXT NOT NULL,
     image VARCHAR(255) NOT NULL,
+    banner_image VARCHAR(255) NOT NULL,
     price DECIMAL(8,2) NOT NULL
 );
 
