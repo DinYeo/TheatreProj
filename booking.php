@@ -75,3 +75,4 @@ $all_shows = mysqli_query($conn, "SELECT * FROM shows");
     </div>
 </body>
 </html>
+        <!-- To continue -> after clicking select the user will be directed to the checkout page-->
