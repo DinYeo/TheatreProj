@@ -65,7 +65,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     <div class="shows-grid">
         <?php foreach ($shows as $show) { ?>
             <a href="show_detail.php?id=<?php echo $show['show_id']; ?>" class="show-card">
-                <img src="<?php echo $show['image']; ?>">
+                <img src="<?php echo $show['image']; ?>" alt="<?php echo $show['title']; ?>">
                 <div class="card-info">
                     <span class="card-tag"><?php echo $show['genre']; ?></span>
                     <h3><?php echo $show['title']; ?></h3>
