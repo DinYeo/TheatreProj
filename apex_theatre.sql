@@ -39,6 +39,7 @@ CREATE TABLE bookings (
     user_id INT NULL,
     customer_name VARCHAR(100) NOT NULL,
     customer_email VARCHAR(100) NOT NULL,
+    customer_phone VARCHAR(8) NOT NULL,
     perf_id INT NOT NULL,
     seats_booked VARCHAR(100) NOT NULL,
     total_price DECIMAL(8,2) NOT NULL
