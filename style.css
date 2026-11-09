@@ -415,3 +415,89 @@ a {
     color: var(--text-muted);
     margin-top: 4px;
 }
+
+/* ===== Seat selection page (booking_form.php) ===== */
+.seat-page {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.seat-table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.seat-table caption {
+    caption-side: top;
+    background-color: #1a1a1a;
+    border-bottom: 4px solid #8f1d2c;
+    padding: 8px;
+    margin-bottom: 15px;
+}
+
+.seat-table th {
+    padding: 6px;
+    color: #aaaaaa;
+}
+
+.seat-table td {
+    width: 60px;
+    padding: 6px;
+    border: 1px solid #333333;
+}
+
+.seat-free {
+    background-color: #262626;
+}
+
+.seat-free label {
+    display: block;
+    font-size: 12px;
+}
+
+.seat-booked {
+    background-color: #555555;
+    color: #999999;
+}
+
+.seat-legend {
+    text-align: center;
+    color: #aaaaaa;
+}
+
+.legend-free {
+    background-color: #262626;
+    border: 1px solid #333333;
+}
+
+.legend-booked {
+    background-color: #555555;
+    color: #999999;
+}
+
+.seat-summary {
+    width: 60%;
+    margin: 20px auto;
+    padding: 15px;
+    border: 1px solid #333333;
+    text-align: center;
+}
+
+.seat-summary input {
+    margin: 5px;
+}
+
+.summary-box {
+    background-color: #262626;
+    color: #ffffff;
+    border: 1px solid #333333;
+    padding: 5px;
+    text-align: center;
+}
+
+.error-msg {
+    color: #ff6b6b;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
