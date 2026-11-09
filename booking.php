@@ -1,7 +1,16 @@
 <?php require_once 'db.php';
-
-$show_id = $_GET['show_id'];
+// Get Show ID from URL - (int) turns anything that is not a number into 0
+$show_id = 0;
+if (isset($_GET['show_id'])) {
+    $show_id = (int) $_GET['show_id'];
+}
 $result = mysqli_query($conn, "SELECT * FROM shows WHERE show_id = $show_id");
+
+// no show with that id -> go back to the home page
+if (mysqli_num_rows($result) == 0) {
+    header('Location: home.php');
+    exit;
+}
 $show = mysqli_fetch_assoc($result);
 $perf_result = mysqli_query($conn, "SELECT * FROM performances WHERE show_id = $show_id ORDER BY perf_date, perf_time");
 $all_shows = mysqli_query($conn, "SELECT * FROM shows");
