@@ -418,86 +418,285 @@ a {
 
 /* ===== Seat selection page (booking_form.php) ===== */
 .seat-page {
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 30px;
+    padding-bottom: 60px;
 }
 
+.seat-title {
+    font-size: 26px;
+    margin-bottom: 4px;
+}
+
+.seat-heading {
+    font-size: 18px;
+    border-bottom: 1px solid #333333;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+}
+
+/* two columns side by side, using float as in the CSS layout notes */
+.seat-map-col {
+    float: left;
+    width: 62%;
+    margin-top: 20px;
+}
+
+.seat-summary-col {
+    float: right;
+    width: 34%;
+    margin-top: 20px;
+    background-color: #141414;
+    border: 1px solid #333333;
+    padding: 20px;
+}
+
+.clear {
+    clear: both;
+}
+
+/* the seat map */
 .seat-table {
-    margin: 20px auto;
-    border-collapse: collapse;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 6px;
     text-align: center;
 }
 
 .seat-table caption {
     caption-side: top;
-    background-color: #1a1a1a;
-    border-bottom: 4px solid #8f1d2c;
+    background-color: #8f1d2c;
+    font-weight: bold;
     padding: 8px;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
 }
 
 .seat-table th {
-    padding: 6px;
+    width: 25px;
     color: #aaaaaa;
 }
 
-.seat-table td {
-    width: 60px;
-    padding: 6px;
-    border: 1px solid #333333;
+.seat {
+    padding: 0;
 }
 
-.seat-free {
-    background-color: #262626;
-}
-
-.seat-free label {
+/* every seat (and the legend) is drawn as a seat shape using borders:
+   thick top border = backrest, side borders = armrests */
+.seat-shape {
     display: block;
-    font-size: 12px;
+    width: 38px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: bold;
+    border-top: 9px solid #b02436;
+    border-left: 5px solid #4a0f18;
+    border-right: 5px solid #4a0f18;
+    border-bottom: 3px solid #4a0f18;
+    background-color: #8f1d2c;
+    color: #f2c9cf;
+    cursor: pointer;
 }
 
+/* a seat the customer has picked (class added by JavaScript) */
+.seat-picked {
+    border-top: 9px solid #ffc04d;
+    border-left: 5px solid #8a5a00;
+    border-right: 5px solid #8a5a00;
+    border-bottom: 3px solid #8a5a00;
+    background-color: #e59400;
+    color: #000000;
+}
+
+/* a seat someone else already booked */
 .seat-booked {
-    background-color: #555555;
-    color: #999999;
+    border-top: 9px solid #4d4d4d;
+    border-left: 5px solid #262626;
+    border-right: 5px solid #262626;
+    border-bottom: 3px solid #262626;
+    background-color: #3a3a3a;
+    cursor: default;
 }
 
+/* the real checkbox is hidden - the seat shape (its label) is clicked instead */
+.seat-box {
+    display: none;
+}
+
+.aisle {
+    width: 20px;
+}
+
+/* legend under the seat map */
 .seat-legend {
-    text-align: center;
+    margin: 20px auto 0 auto;
     color: #aaaaaa;
+    font-size: 13px;
 }
 
-.legend-free {
-    background-color: #262626;
-    border: 1px solid #333333;
+.seat-legend td {
+    padding: 0 6px;
 }
 
-.legend-booked {
-    background-color: #555555;
-    color: #999999;
+.seat-legend .seat-shape {
+    width: 18px;
+    height: 12px;
+    border-top-width: 5px;
+    cursor: default;
 }
 
-.seat-summary {
-    width: 60%;
-    margin: 20px auto;
-    padding: 15px;
-    border: 1px solid #333333;
-    text-align: center;
+/* the summary box on the right */
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.seat-summary input {
-    margin: 5px;
+.summary-table th {
+    width: 50%;
+    text-align: left;
+    font-weight: normal;
+    color: #aaaaaa;
+    padding: 10px 0;
+    border-bottom: 1px solid #333333;
+}
+
+.summary-table td {
+    text-align: right;
+    padding: 10px 0;
+    border-bottom: 1px solid #333333;
 }
 
 .summary-box {
-    background-color: #262626;
+    width: 100%;
+    background-color: #141414;
     color: #ffffff;
-    border: 1px solid #333333;
-    padding: 5px;
-    text-align: center;
+    border: 0;
+    font-size: 16px;
+    text-align: right;
+}
+
+.summary-total th {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.summary-total .summary-box {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.summary-note {
+    color: #aaaaaa;
+    font-size: 13px;
+    margin-top: 15px;
+}
+
+.summary-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    margin-top: 15px;
 }
 
 .error-msg {
     color: #ff6b6b;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+/*My Bookings page (cart.php) */
+.cart-intro {
+    color: #aaaaaa;
+    margin-bottom: 20px;
+}
+
+.cart-empty {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.cart-table th {
+    background-color: #8f1d2c;
+    text-align: left;
+    padding: 10px;
+}
+
+.cart-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #333333;
+}
+
+.cart-table tr:hover td {
+    background-color: #1a1a1a;
+}
+
+.unavailable {
+    color: #ff6b6b;
+    font-size: 13px;
+}
+
+.text-link {
+    color: #e59400;
+}
+
+.text-link:hover {
+    text-decoration: underline;
+}
+
+.cart-links {
+    margin-top: 15px;
+}
+
+/* customer details box */
+.checkout-box {
+    border: 1px solid #333333;
+    background-color: #141414;
+    padding: 20px;
+}
+
+.checkout-box legend {
+    font-weight: bold;
+    padding: 0 8px;
+}
+
+.checkout-box label {
+    display: block;
+    color: #aaaaaa;
+    margin-top: 12px;
+    margin-bottom: 4px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #262626;
+    color: #ffffff;
+    border: 1px solid #333333;
+}
+
+/* Confirmation page*/
+.receipt-caption {
+    caption-side: top;
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.receipt-total td {
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 0;
+}
+
+.not-booked {
+    margin-left: 25px;
+    color: #aaaaaa;
 }
