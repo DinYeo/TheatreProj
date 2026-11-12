@@ -35,7 +35,7 @@ $all_shows = mysqli_query($conn, "SELECT * FROM shows");
     <header class="top-header">
         <div class="header-left">
             <button id="openDrawer" class="menu-btn">☰ Menu</button>
-            <span class="brand-title">APEX THEATRE</span>
+            <a href="home.php" class="brand-link"><span class="brand-title">APEX THEATRE</span></a>
         </div>
         <div class="header-right">
             <form action="show_detail.php" method="GET" class="header-select-form">
@@ -63,18 +63,18 @@ $all_shows = mysqli_query($conn, "SELECT * FROM shows");
         <h2>Available Sessions</h2>
         <?php while ($perf = mysqli_fetch_assoc($perf_result)) { ?>
             <div class="session-row">
-                <!-- Left: Date Block -->
+                <!-- left: date block -->
                 <div class="session-date">
                     <span class="session-month"><?php echo date('M', strtotime($perf['perf_date'])); ?></span>
                     <span class="session-day"><?php echo date('d', strtotime($perf['perf_date'])); ?></span>
                 </div>
-                <!-- Middle: Day name, time, venue -->
+                <!-- middle: day name, time, venue -->
                 <div class="session-info">
                     <p class="session-datetime"><?php echo date('D', strtotime($perf['perf_date'])) . ' • ' . date('g:i A', strtotime($perf['perf_time'])); ?></p>
                     <p class="session-venue">Apex Theatre, Singapore</p>
                 </div>
-                <!-- Right: Select Button -->
-                <!-- Passes perf_id to the form page via URL -->
+                <!-- right: select button -->
+                <!-- passes perf_id to the form page via url -->
                 <a href="booking_form.php?perf_id=<?php echo $perf['perf_id']; ?>&show_id=<?php echo $show_id; ?>" class="btn btn-primary">
                     Select &rsaquo;
                 </a>
@@ -82,6 +82,10 @@ $all_shows = mysqli_query($conn, "SELECT * FROM shows");
             <hr>
         <?php } ?>
     </div>
+
+    <?php include "footer.php"; ?>
+
+    <script src="form_validation.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>
-        <!-- To continue -> after clicking select the user will be directed to the checkout page-->
+        <!-- to continue -> after clicking select, the user will be directed to the seat selection page -->

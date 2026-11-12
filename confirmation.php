@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'db.php';
+require_once 'mail_patch.php';
 
 // this page can only be reached by submitting the form on cart.php
 if (!isset($_POST['payment']) || !isset($_SESSION['cart'])) {
@@ -99,11 +100,22 @@ if ($error == "" && $payment == 'success') {
                 $not_booked[] = $info['title'] . ' (' . $when . ')';
                 $new_cart[] = $item;    //unavailable
             } else {
+                // Determine user_id: use logged-in session, or lookup by email if registered
+                $user_id_val = "NULL";
+                if (isset($_SESSION['user_id'])) {
+                    $user_id_val = intval($_SESSION['user_id']);
+                } else {
+                    $user_check = mysqli_query($conn, "SELECT user_id FROM users WHERE email = '$email_sql'");
+                    if ($u_row = mysqli_fetch_assoc($user_check)) {
+                        $user_id_val = intval($u_row['user_id']);
+                    }
+                }
+
                 // save the booking
                 $subtotal = $info['subtotal'];
                 $query = "INSERT INTO bookings (user_id, customer_name, customer_email, customer_phone,
                                                 perf_id, seats_booked, total_price)
-                          VALUES (NULL, '$name_sql', '$email_sql', '$phone_sql',
+                          VALUES ($user_id_val, '$name_sql', '$email_sql', '$phone_sql',
                                   $perf_id, '$seat_list', $subtotal)";
                 mysqli_query($conn, $query);
 
@@ -150,7 +162,11 @@ if ($confirmed != array()) {
     $headers = 'From: f32ee@localhost' . "\r\n" .
                'Reply-To: f32ee@localhost' . "\r\n" .
                'X-Mailer: PHP/' . phpversion();
-    $mail_sent = mail($to, $subject, $message, $headers, '-ff32ee@localhost');
+    if (function_exists('mail_patch\mail')) {
+        $mail_sent = \mail_patch\mail($to, $subject, $message, $headers, '-ff32ee@localhost');
+    } else {
+        $mail_sent = @mail($to, $subject, $message, $headers, '-ff32ee@localhost');
+    }
 }
 
 $all_shows = mysqli_query($conn, "SELECT * FROM shows");
@@ -174,7 +190,7 @@ $all_shows = mysqli_query($conn, "SELECT * FROM shows");
     <header class="top-header">
         <div class="header-left">
             <button id="openDrawer" class="menu-btn">☰ Menu</button>
-            <span class="brand-title">APEX THEATRE</span>
+            <a href="home.php" class="brand-link"><span class="brand-title">APEX THEATRE</span></a>
         </div>
         <div class="header-right">
             <form action="show_detail.php" method="GET" class="header-select-form">
@@ -194,20 +210,20 @@ $all_shows = mysqli_query($conn, "SELECT * FROM shows");
     <div class="container seat-page">
 
     <?php if ($error != "") { ?>
-        <!-- invalid form deets -->
+        <!-- invalid form details -->
         <h1 class="seat-title">Something is missing</h1>
         <p class="error-msg"><?php echo $error; ?></p>
         <p><a href="cart.php" class="text-link">&lt; Back to My Bookings</a></p>
 
     <?php } else if ($payment == 'failed') { ?>
-        <!-- the payment portal said the payment failed -->
+        <!-- payment failed -->
         <h1 class="seat-title">Payment unsuccessful</h1>
         <p class="error-msg">Your payment did not go through, so no seats were booked and you have not been charged.</p>
         <p>Your bookings are still saved in My Bookings. You can try again.</p>
         <p><a href="cart.php" class="btn btn-primary">Back to My Bookings</a></p>
 
     <?php } else { ?>
-        <!--payment successful-->
+        <!-- payment successful -->
         <?php if ($confirmed != array()) { ?>
             <h1 class="seat-title">Booking confirmed</h1>
             <p class="cart-intro">Thank you, <?php echo htmlspecialchars($name); ?>.
@@ -272,5 +288,9 @@ $all_shows = mysqli_query($conn, "SELECT * FROM shows");
     <?php } ?>
 
     </div>
+
+    <?php include "footer.php"; ?>
+
+    <script src="form_validation.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>

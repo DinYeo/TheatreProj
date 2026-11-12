@@ -24,10 +24,10 @@ $perf_result = mysqli_query($conn, $perf_sql);
 <head>
     <meta charset="UTF-8">
     <title><?php echo $show['title']; ?> | Apex Theatre</title>
-    <link rel="stylesheet" href="style.css?v=1">
+    <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
 </head>
 <body>
-    <!-- Navigation Menu -->
+    <!-- navigation menu -->
     <nav id="drawerMenu" class="drawer-menu">
         <button id="closeDrawer" class="close-btn">&times;</button>
         <ul>
@@ -37,11 +37,11 @@ $perf_result = mysqli_query($conn, $perf_sql);
         </ul>
     </nav>
 
-    <!-- Stick Header-->
+    <!-- sticky header-->
     <header class="top-header">
         <div class="header-left">
             <button id="openDrawer" class="menu-btn">☰ Menu</button>
-            <span class="brand-title">APEX THEATRE</span> 
+            <a href="home.php" class="brand-link"><span class="brand-title">APEX THEATRE</span></a>
         </div>
         <div class="header-right">
             <form action="show_detail.php" method="GET" class="header-select-form">
@@ -58,7 +58,7 @@ $perf_result = mysqli_query($conn, $perf_sql);
         </div>
     </header>
 
-    <!-- Centered Show Artwork -->
+    <!-- centered show artwork -->
     <section class="detail-hero">
         <div class="container">
             <div class="detail-card">
@@ -68,13 +68,13 @@ $perf_result = mysqli_query($conn, $perf_sql);
         </div>
     </section>
 
-    <!-- Reddish Sub-nav Bar -->
+    <!-- reddish sub-nav bar -->
     <div class="container">
         <div class="sub-nav-bar">
             <a href="home.php">&lt; BACK TO OVERVIEW</a>
         </div>
     </div>
-    <!-- Side-by-side columns -->
+    <!-- side-by-side columns -->
     <div class="container detail-content">
         <div class="synopsis-col">
             <h2>SYNOPSIS</h2>
@@ -96,5 +96,9 @@ $perf_result = mysqli_query($conn, $perf_sql);
             </a>
         </div>
     </div>
+
+    <?php include "footer.php"; ?>
+
+    <script src="form_validation.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>

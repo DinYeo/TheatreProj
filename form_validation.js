@@ -9,7 +9,21 @@ function init() {
         for (var i = 0; i < boxes.length; i++) {
             boxes[i].onchange = updateSeatTotal;
         }
-                updateSeatTotal();     
+        updateSeatTotal();
+    }
+
+    // Menu Button
+    var openBtn = document.getElementById("openDrawer");
+    var closeBtn = document.getElementById("closeDrawer");
+    if (openBtn) {
+        openBtn.onclick = function () {
+            document.getElementById("drawerMenu").style.display = "block";
+        };
+    }
+    if (closeBtn) {
+        closeBtn.onclick = function () {
+            document.getElementById("drawerMenu").style.display = "none";
+        };
     }
 
     // My Bookings page

@@ -25,10 +25,18 @@
 html,
 body {
     width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     background-color: var(--bg-dark);
     color: var(--text-main);
     font-family: var(--font-main);
     line-height: 1.6;
+}
+
+.container,
+.whats-on-container {
+    flex: 1 0 auto;
 }
 
 h1,
@@ -79,11 +87,6 @@ a {
 }
 
 /* Home Page*/
-.drawer-menu {
-    /* Hook up with javascript later*/
-    display: none;
-}
-
 .top-header {
     position: sticky;
     top: 0;
@@ -101,6 +104,11 @@ a {
     display: flex;
     align-items: center;
     gap: 15px;
+}
+
+.brand-link {
+    text-decoration: none;
+    color: inherit;
 }
 
 .brand-title {
@@ -699,4 +707,493 @@ a {
 .not-booked {
     margin-left: 25px;
     color: #aaaaaa;
+}
+
+/* menu button */
+/* --- Drawer Menu --- */
+.drawer-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100%;
+    background-color: #111111;
+    border-right: 1px solid var(--border-color);
+    padding: 24px 20px;
+    z-index: 200;
+    box-shadow: 5px 0 20px rgba(0, 0, 0, 0.8);
+}
+
+/* Close button (top right of drawer) */
+.drawer-menu .close-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 28px;
+    cursor: pointer;
+    float: right;
+    line-height: 1;
+    margin-bottom: 20px;
+    transition: color 0.2s;
+}
+
+.drawer-menu .close-btn:hover {
+    color: var(--text-main);
+}
+
+/* Menu list & links */
+.drawer-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 40px 0 0 0;
+}
+
+.drawer-menu li {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.drawer-menu li a {
+    display: block;
+    padding: 14px 10px;
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: background 0.2s, padding-left 0.2s;
+}
+
+.drawer-menu li a:hover {
+    background-color: var(--accent-red);
+    padding-left: 18px;
+    /* smooth slide effect on hover */
+}
+
+/* Button styles */
+.btn-secondary {
+    background-color: #333333;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: #444444;
+}
+
+/* --- Auth & Account Page (my_tickets.php) --- */
+.auth-container {
+    max-width: 960px;
+    margin: 0 auto;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 40px;
+    display: flex;
+    gap: 40px;
+    align-items: stretch;
+}
+
+.auth-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-divider {
+    width: 1px;
+    background-color: var(--border-color);
+}
+
+.auth-col h2 {
+    font-size: 22px;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+}
+
+.auth-subtext {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    .auth-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .auth-divider {
+        width: 100%;
+        height: 1px;
+    }
+}
+
+.auth-form .form-group {
+    margin-bottom: 18px;
+}
+
+.auth-form label {
+    display: block;
+    font-size: 13px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+.auth-form input[type="text"],
+.auth-form input[type="email"],
+.auth-form input[type="password"] {
+    width: 100%;
+    padding: 12px 14px;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    font-size: 15px;
+    border-radius: 4px;
+    outline: none;
+}
+
+.auth-form input:focus {
+    border-color: var(--accent-red);
+}
+
+/* Account Bookings Table */
+.account-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.account-table th,
+.account-table td {
+    padding: 16px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.account-table th {
+    background-color: #222222;
+    color: var(--text-muted);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.account-table tr:last-child td {
+    border-bottom: none;
+}
+
+.account-table tr:hover td {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.seat-badge {
+    background-color: var(--accent-red);
+    color: #ffffff;
+    padding: 4px 10px;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+/* --- What's On Page (shows.php) --- */
+.whats-on-titlebar {
+    background-color: #4e041b;
+    padding: 24px 30px;
+    text-align: center;
+    border-bottom: 2px solid #6b0726;
+}
+
+.whats-on-titlebar h1 {
+    font-size: 26px;
+    letter-spacing: 3px;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.whats-on-container {
+    width: 100%;
+}
+
+/* --- Cinematic Showcase Banners (shows.php) --- */
+.spotlight-banner {
+    width: 100%;
+    min-height: 520px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border-bottom: 2px solid var(--border-color);
+    display: flex;
+}
+
+.spotlight-banner:last-child {
+    border-bottom: none;
+}
+
+.whats-on-container+.site-footer {
+    margin-top: 0;
+}
+
+.banner-overlay {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 60px 50px;
+}
+
+/* Left-aligned banner: dark fade on left, artwork visible on right */
+.banner-left .banner-overlay {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.96) 0%, rgba(0, 0, 0, 0.90) 45%, rgba(0, 0, 0, 0.45) 75%, rgba(0, 0, 0, 0.15) 100%);
+    justify-content: flex-start;
+}
+
+/* Right-aligned banner: artwork visible on left, dark fade on right */
+.banner-right .banner-overlay {
+    background: linear-gradient(270deg, rgba(0, 0, 0, 0.96) 0%, rgba(0, 0, 0, 0.90) 45%, rgba(0, 0, 0, 0.45) 75%, rgba(0, 0, 0, 0.15) 100%);
+    justify-content: flex-end;
+}
+
+.banner-content {
+    max-width: 620px;
+    color: var(--text-main);
+}
+
+.spotlight-genre {
+    display: inline-block;
+    color: #e59400;
+    /* bright amber */
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.spotlight-title {
+    font-size: 38px;
+    letter-spacing: 2px;
+    color: #ffffff;
+    margin-bottom: 16px;
+    line-height: 1.2;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.spotlight-text {
+    color: #dddddd;
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.9);
+}
+
+.banner-action {
+    margin-bottom: 16px;
+}
+
+.btn-banner-buy {
+    font-size: 15px;
+    padding: 12px 28px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* Details row below the Buy Tickets button */
+.banner-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+}
+
+.banner-meta-date {
+    color: #e59400;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.banner-meta-price {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.banner-meta-dot {
+    color: #777777;
+}
+
+.spotlight-link {
+    color: #cccccc;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.spotlight-link:hover {
+    color: #ffffff;
+}
+
+@media (max-width: 850px) {
+    .banner-overlay {
+        padding: 40px 20px;
+        background: rgba(0, 0, 0, 0.90) !important;
+        justify-content: flex-start !important;
+    }
+
+    .spotlight-title {
+        font-size: 28px;
+    }
+}
+
+/* --- Site Footer (all pages) --- */
+.site-footer {
+    background-color: #1f0108;
+    border-top: 1px solid #3a0a14;
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-top: auto;
+}
+
+.footer-top {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 24px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-col h4 {
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--text-main);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+/* Social media buttons */
+.social-links {
+    display: flex;
+    gap: 10px;
+}
+
+.social-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-main);
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: lowercase;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.social-btn:hover {
+    background-color: var(--accent-red);
+    border-color: var(--accent-red);
+}
+
+/* Newsletter */
+.newsletter-form {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.newsletter-form input {
+    background-color: #120105;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-main);
+    padding: 8px 12px;
+    font-size: 13px;
+    border-radius: 3px;
+    outline: none;
+    width: 140px;
+}
+
+.newsletter-form input:focus {
+    border-color: var(--accent-red);
+}
+
+.btn-news {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: var(--text-main);
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 3px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s;
+}
+
+.btn-news:hover {
+    background-color: var(--accent-red);
+    border-color: var(--accent-red);
+}
+
+/* Footer Bottom tier */
+.footer-bottom {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #888888;
+}
+
+.footer-legal {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-legal a {
+    color: #888888;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-legal a:hover {
+    color: var(--text-main);
+}
+
+@media (max-width: 768px) {
+    .footer-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .newsletter-form {
+        flex-wrap: wrap;
+    }
+
+    .newsletter-form input {
+        width: 100%;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
 }

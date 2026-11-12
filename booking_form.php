@@ -50,7 +50,7 @@ $row_letters = array('A', 'B', 'C', 'D', 'E');
     <header class="top-header">
         <div class="header-left">
             <button id="openDrawer" class="menu-btn">☰ Menu</button>
-            <span class="brand-title">APEX THEATRE</span>
+            <a href="home.php" class="brand-link"><span class="brand-title">APEX THEATRE</span></a>
         </div>
         <div class="header-right">
             <form action="show_detail.php" method="GET" class="header-select-form">
@@ -99,7 +99,7 @@ $row_letters = array('A', 'B', 'C', 'D', 'E');
             <input type="hidden" name="perf_id" value="<?php echo $perf_id; ?>">
             <input type="hidden" id="price" value="<?php echo $perf['price']; ?>">
 
-            <!-- LEFT COLUMN: the seat map -->
+            <!-- left column: the seat map -->
             <div class="seat-map-col">
                 <h2 class="seat-heading">Choose your seats</h2>
                 <table class="seat-table">
@@ -151,7 +151,7 @@ $row_letters = array('A', 'B', 'C', 'D', 'E');
                 </table>
             </div>
 
-            <!-- RIGHT COLUMN: summary of the selection -->
+            <!-- right column: summary of the selection -->
             <div class="seat-summary-col">
                 <h2 class="seat-heading">Your selection</h2>
                 <table class="summary-table">
@@ -181,6 +181,8 @@ $row_letters = array('A', 'B', 'C', 'D', 'E');
         </form>
     </div>
 
-    <script type="text/javascript" src="form_validation.js"></script>
+    <?php include "footer.php"; ?>
+
+    <script type="text/javascript" src="form_validation.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>

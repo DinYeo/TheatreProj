@@ -36,7 +36,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     <header class = "top-header">
         <div class = "header-left">
             <button id="openDrawer" class="menu-btn">☰ Menu</button>
-            <span class="brand-title">APEX THEATRE</span> 
+            <a href="home.php" class="brand-link"><span class="brand-title">APEX THEATRE</span></a>
         </div>
         <div class = "header-right">
             <!-- retrieve show details-->
@@ -75,5 +75,9 @@ if ($result && mysqli_num_rows($result) > 0) {
         <?php } ?>
     </div>
 </div>
+
+    <?php include "footer.php"; ?>
+
+    <script src="form_validation.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>

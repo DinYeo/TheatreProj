@@ -6,7 +6,7 @@ if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array();
 }
 
-/* ADD a booking */
+/* add a booking */
 if (isset($_POST['perf_id'])) {
     $perf_id = (int) $_POST['perf_id'];
 
@@ -53,7 +53,7 @@ if (isset($_POST['perf_id'])) {
     exit;
 }
 
-/* Removing booking*/
+/* removing a booking */
 if (isset($_GET['remove'])) {
     $remove = (int) $_GET['remove'];
     // rebuild the list without that booking, so the numbers stay 0, 1, 2 ...
@@ -96,7 +96,7 @@ $all_shows = mysqli_query($conn, "SELECT * FROM shows");
     <header class="top-header">
         <div class="header-left">
             <button id="openDrawer" class="menu-btn">☰ Menu</button>
-            <span class="brand-title">APEX THEATRE</span>
+            <a href="home.php" class="brand-link"><span class="brand-title">APEX THEATRE</span></a>
         </div>
         <div class="header-right">
             <form action="show_detail.php" method="GET" class="header-select-form">
@@ -197,16 +197,16 @@ $all_shows = mysqli_query($conn, "SELECT * FROM shows");
                 <a href="cart.php?empty=1" class="text-link">Clear all</a>
             </p>
 
-            <!-- LEFT COLUMN: customer details -->
+            <!-- left column: customer details -->
             <div class="seat-map-col">
                 <fieldset class="checkout-box">
                     <legend>Your details</legend>
 
                     <label for="name">Full name</label>
-                    <input type="text" id="name" name="name" class="form-input" required>
+                    <input type="text" id="name" name="name" class="form-input" value="<?php echo isset($_SESSION['user_name']) ? htmlspecialchars($_SESSION['user_name']) : ''; ?>" required>
 
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" class="form-input" required>
+                    <input type="email" id="email" name="email" class="form-input" value="<?php echo isset($_SESSION['user_email']) ? htmlspecialchars($_SESSION['user_email']) : ''; ?>" required>
 
                     <label for="phone">Mobile number (8 digits)</label>
                     <input type="text" id="phone" name="phone" class="form-input" maxlength="8" required>
@@ -220,7 +220,7 @@ $all_shows = mysqli_query($conn, "SELECT * FROM shows");
                 </fieldset>
             </div>
 
-            <!-- RIGHT COLUMN: total of the ticked bookings -->
+            <!-- right column: total of the ticked bookings -->
             <div class="seat-summary-col">
                 <h2 class="seat-heading">Summary</h2>
                 <table class="summary-table">
@@ -242,6 +242,8 @@ $all_shows = mysqli_query($conn, "SELECT * FROM shows");
         <?php } ?>
     </div>
 
-    <script type="text/javascript" src="form_validation.js"></script>
+    <?php include "footer.php"; ?>
+
+    <script type="text/javascript" src="form_validation.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>
